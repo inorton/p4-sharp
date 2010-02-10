@@ -19,18 +19,33 @@ namespace P4
 		
 		private ShellEnvironment env;
 		
+		/// <summary>
+		/// Port number of the perforce server
+		/// </summary>
 		public int Port {
 			get { return port; }
 			set { port = value; }
 		}
+		
+		/// <summary>
+		/// Hostname of the perforce server
+		/// </summary>
 		public string Server {
 			get { return server; }
 			set { server = value; }
 		}
+		
+		/// <summary>
+		/// Perforce Username
+		/// </summary>
 		public string Username {
 			get { return username; }
 			set { username = value; }
 		}
+		
+		/// <summary>
+		/// Perforce Password
+		/// </summary>
 		public string Password {
 			get { return password; }
 			set { password = value; }
@@ -41,16 +56,38 @@ namespace P4
 			env = new ShellEnvironment();
 		}
 		
-		public string GetWorkspaceRoot() {
-			string wsr = String.Empty;
-			if ( !loggedIn )
-				Login(username, password);
-			
-			wsr = Info()["Client root"];		
-					
-			return wsr;				
-			
+		
+		/// <summary>
+		/// The full path to the root directory of the current workspace
+		/// </summary>
+		public string WorkspaceRoot {
+			get {
+				string wsr = String.Empty;
+				if ( !loggedIn )
+					Login(username, password);
+				wsr = Info()["Client root"];			
+				return wsr;					
+			}
 		}
+		
+		/// <summary>
+		/// The name of the current workspace
+		/// </summary>
+		public string WorkspaceName {
+			get {
+			string wsn = String.Empty;
+				if ( !loggedIn )
+					Login(username, password);
+				wsn = Info()["Client name"];			
+				return wsn;					
+			}
+			
+			set {
+				env.EnvironmentVariables.Add("P4CLIENT",value);
+			}
+		}
+		
+		
 		
 		public bool Login( string username, string password )
 		{
