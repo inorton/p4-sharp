@@ -19,7 +19,8 @@ namespace p4test
 			
 			Console.WriteLine( "-\n{0}\n", String.Join("\n+",dirs)  );
 		
-			Console.WriteLine( p.GetWorkspaceRoot() );
+			Console.WriteLine( p.WorkspaceName );
+			Console.WriteLine( p.WorkspaceRoot );
 		
 		}
 	}
