@@ -7,9 +7,9 @@
   </MonoDevelop.Ide.DebuggingService>
   <MonoDevelop.Ide.Workbench ActiveDocument="../p4test/Main.cs" ctype="Workbench">
     <Files>
-      <File FileName="../p4test/Main.cs" Line="22" Column="46" />
-      <File FileName="ShellCapture/ShellCapture.cs" Line="64" Column="82" />
-      <File FileName="P4Shell/P4Shell.cs" Line="49" Column="32" />
+      <File FileName="../p4test/Main.cs" Line="12" Column="4" />
+      <File FileName="ShellCapture/ShellCapture.cs" Line="71" Column="46" />
+      <File FileName="P4Shell/P4Shell.cs" Line="67" Column="32" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
