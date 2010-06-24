@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using ShellCapture;
 using System.Diagnostics;
+using ReferenceCache;
 
 namespace P4
 {
@@ -17,7 +18,10 @@ namespace P4
 		private string password = String.Empty;
 		private bool loggedIn = false;
 		
-		private ShellEnvironment env;
+		internal ShellEnvironment env;
+		
+		private ReferenceCache<string,string[]> depotPathCache = new ReferenceCache<string, string[]>();
+		private ReferenceCache<string,string[]> depotPathFileCache = new ReferenceCache<string, string[]>();
 		
 		/// <summary>
 		/// Port number of the perforce server
@@ -83,16 +87,43 @@ namespace P4
 			}
 			
 			set {
-				env.EnvironmentVariables.Add("P4CLIENT",value);
+				env.EnvironmentVariables["P4CLIENT"] = value;
 			}
+		}
+		
+		public string[] GetWorkspaces(string username)
+		{
+			string stdout = String.Empty;
+			string stderr = String.Empty;
+			List<string> clients = new List<string>();
+			if ( 0 == env.Execute( "p4", new string[]{ "clients","-u",username }, out stdout, out stderr ) ){
+				
+				string [] lines = stdout.Split( new string[]{"\n"}, StringSplitOptions.RemoveEmptyEntries );
+				foreach ( string line in lines ){
+					string[] ws = line.Split( new string[]{" "}, 3, StringSplitOptions.RemoveEmptyEntries );
+					clients.Add( ws[1] );
+				}
+				
+			}
+			return clients.ToArray();
 		}
 		
 		
 		
 		public bool Login( string username, string password )
 		{
-			env.EnvironmentVariables.Add("P4USER",username);
-			env.EnvironmentVariables.Add("P4PASSWD",password);
+			env.EnvironmentVariables["P4USER"] = username;
+			env.EnvironmentVariables["P4PASSWD"] = password;
+
+			Process p = env.Expect( "p4", new string[]{ "login" } , "##", 
+			                       new List<string[]>(){
+				                     new string[] { "##","wait##20" },
+				                     new string[] { "##", String.Format("write##{0}\n", password) },
+			                       } );
+			// p.StandardInput.WriteLine( password );
+			p.WaitForExit();
+			Console.WriteLine( p.StandardOutput.ReadToEnd() );
+			
 			string stderr = String.Empty;
 			string stdout = String.Empty;
 			
@@ -101,9 +132,11 @@ namespace P4
 				loggedIn = true;
 				return true;
 			}
+			
 			throw new AccessViolationException(stderr);	
 			
 		}
+		
 		
 		public Dictionary<string,string> Info(){
 			string stdout = String.Empty;
@@ -123,14 +156,94 @@ namespace P4
 			return ret;
 		}
 		
+		public string[] Depots()
+		{
+			string stdout = String.Empty;
+			if ( !loggedIn )
+				Login( username, password );
+				
+			env.ExecuteThrow( "p4", new string[] { "depots" }, out stdout );
+			
+			string[] lines = Regex.Split( stdout, "[\r\n]+" );	
+			List<string> depots = new List<string>();
+			
+			foreach ( string line in lines ){
+				string x = Regex.Replace( line, "^Depot[\\s]+","" );
+				string depot = Regex.Split( x, "\\s" )[0];
+				depots.Add(depot);
+			}
+			
+			return depots.ToArray();
+			
+		}
+		
 		public string[] Dirs( string wildcard ){
 			string stdout = String.Empty;
 			if ( !loggedIn )
 				Login(username, password);
+			
+			if ( wildcard.EndsWith("...") ){
+				wildcard = wildcard.Replace("...","*");
+			}	
+			
+			List<string> dirs = new List<string>();
+			string[] cached = depotPathCache[wildcard];
+			if ( cached == null ){
+				env.ExecuteThrow( "p4", new string[] { "dirs",wildcard }, out stdout );
+				foreach ( string line in Regex.Split( stdout, "[\r\n]+" ) ){
+					string[] path = Regex.Split(line,"/");
+					dirs.Add( path[path.Length-1] );
+				}
 				
-			env.ExecuteThrow( "p4", new string[] { "dirs",wildcard }, out stdout );
-			return Regex.Split( stdout, "[\r\n]+" );
+				depotPathCache[wildcard] = dirs.ToArray();
+				
+			} else {
+				Console.WriteLine("cache hit");
+				dirs = new List<string>( cached );
+			}
+			return dirs.ToArray();
 		}
+		
+		public string[] Files( string wildcard ){
+								
+			string stdout = String.Empty;
+			if ( !loggedIn )
+				Login(username, password);
+			
+			if ( wildcard.EndsWith("...") ){
+				wildcard = wildcard.Replace("...","*");
+			}
+			if ( wildcard.Length < 4 )
+				return new string[]{};
+			
+			List<string> files = new List<string>();
+			string[] cached = depotPathFileCache[wildcard];
+			
+			if ( cached == null ){
+				try {			
+					env.ExecuteThrow( "p4", new string[] { "files",wildcard }, out stdout );
+
+					if ( !stdout.Contains("no such file") ){
+						foreach ( string line in Regex.Split( stdout, "[\r\n]+" ) ){
+							string[] path = Regex.Split(line,"/");
+							string file = path[path.Length-1];
+							string[] fname = Regex.Split(file, "#");
+							files.Add( fname[0] );
+						}
+						depotPathFileCache[wildcard] = files.ToArray();
+					}
+				} catch ( ApplicationException e ){
+					Console.Error.WriteLine( e.Message );
+				}
+			} else {
+				files = new List<string>( cached );
+			}
+			
+			
+			return files.ToArray();
+		}
+		
+		
 		
 		public string[] Edit( string wildcard ){
 			string stdout = String.Empty;
@@ -186,6 +299,34 @@ namespace P4
 				
 			env.ExecuteThrow( "p4", new string[] { "client","-o" }, out stdout );
 			return Regex.Split( stdout, "[\r\n]+" );
+		}
+		
+		public Dictionary<string, string> FStat( string file )
+		{
+			Dictionary<string,string> ret = new Dictionary<string, string>();
+			string stdout = String.Empty;
+			if ( !loggedIn )
+				Login(username, password);
+				
+			env.ExecuteThrow( "p4", new string[] { "fstat",file }, out stdout );
+			
+			string[] lines = Regex.Split( stdout, "[\r\n]+" );
+			foreach ( string line in lines ){
+				string[] row = Regex.Split( line, " " );
+				string key = row[1];
+				string value = String.Empty;
+				int x = 2;
+				while ( x < row.Length ){
+					value += row[x++];
+				}
+				ret.Add( key, value );
+			}
+			return ret;
+		}
+		
+		public string LocalToDepot( string localpath )
+		{			
+			return String.Empty;
 		}
 	}
 }
