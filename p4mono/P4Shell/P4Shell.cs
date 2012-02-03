@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using ShellCapture;
 using System.Diagnostics;
-using ReferenceCache;
 
 namespace P4
 {
@@ -20,8 +19,8 @@ namespace P4
 		
 		internal ShellEnvironment env;
 		
-		private ReferenceCache<string,string[]> depotPathCache = new ReferenceCache<string, string[]>();
-		private ReferenceCache<string,string[]> depotPathFileCache = new ReferenceCache<string, string[]>();
+		private Dictionary<string,string[]> depotPathCache = new Dictionary<string, string[]>();
+		private Dictionary<string,string[]> depotPathFileCache = new Dictionary<string, string[]>();
 		
 		/// <summary>
 		/// Port number of the perforce server
@@ -187,8 +186,9 @@ namespace P4
 			}	
 			
 			List<string> dirs = new List<string>();
-			string[] cached = depotPathCache[wildcard];
-			if ( cached == null ){
+			string[] cached = null;
+
+			if ( !depotPathCache.TryGetValue(wildcard, out cached) ){
 				env.ExecuteThrow( "p4", new string[] { "dirs",wildcard }, out stdout );
 				foreach ( string line in Regex.Split( stdout, "[\r\n]+" ) ){
 					string[] path = Regex.Split(line,"/");
@@ -217,9 +217,9 @@ namespace P4
 				return new string[]{};
 			
 			List<string> files = new List<string>();
-			string[] cached = depotPathFileCache[wildcard];
+			string[] cached = null;
 			
-			if ( cached == null ){
+			if ( !depotPathFileCache.TryGetValue(wildcard, out cached) ){
 				try {			
 					env.ExecuteThrow( "p4", new string[] { "files",wildcard }, out stdout );
 
