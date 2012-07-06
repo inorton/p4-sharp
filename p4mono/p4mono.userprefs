@@ -1,23 +1,22 @@
-﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" ctype="Workspace" />
+﻿<Properties GitUserInfo="UsingMD">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService>
     <BreakpointStore>
       <Breakpoint file="/home/inb/Projects/git/p4mono/p4mono/ShellCapture/ShellCapture.cs" line="68" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService>
-  <MonoDevelop.Ide.Workbench ActiveDocument="../p4test/Main.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="cperforce/cperforce.h">
     <Files>
-      <File FileName="../p4test/Main.cs" Line="12" Column="4" />
-      <File FileName="ShellCapture/ShellCapture.cs" Line="71" Column="46" />
-      <File FileName="P4Shell/P4Shell.cs" Line="67" Column="32" />
+      <File FileName="cperforce/cperforce.cpp" Line="21" Column="15" />
+      <File FileName="cperforce/cperforce.h" Line="4" Column="23" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
+          <Node name="cperforce" expanded="True" selected="True" />
           <Node name="P4Shell" expanded="True" />
           <Node name="p4test" expanded="True">
             <Node name="References" expanded="True" />
-            <Node name="Main.cs" selected="True" />
           </Node>
           <Node name="ShellCapture" expanded="True" />
         </State>
@@ -28,12 +27,14 @@
       <Pad Id="MonoDevelop.Debugger.WatchPad">
         <State />
       </Pad>
-      <Pad Id="ConnectionManagerPad">
-        <State expanded="True" selected="True" />
-      </Pad>
-      <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State selected="True" />
-      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/home/inb/Projects/git/p4mono/p4mono/ShellCapture/ShellCapture.cs" line="68" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="../../../p4/emulator/cosmo2emulator-feat-serialkb/src/csharp/CosmoEmulator/kb/CosmoEmulatorKeyboard.cs" line="118" offsetX="442" offsetY="1755" expression="remaining" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
 </Properties>
