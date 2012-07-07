@@ -1,1 +1,47 @@
-<?xml version="1.0" encoding="utf-8"?><Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">  <PropertyGroup>    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>    <ProductVersion>9.0.21022</ProductVersion>    <SchemaVersion>2.0</SchemaVersion>    <ProjectGuid>{31300B0A-29A3-4559-9665-869161808C90}</ProjectGuid>    <OutputType>Exe</OutputType>    <RootNamespace>p4test</RootNamespace>    <AssemblyName>p4test</AssemblyName>    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>  </PropertyGroup>  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">    <DebugSymbols>true</DebugSymbols>    <DebugType>full</DebugType>    <Optimize>false</Optimize>    <OutputPath>bin\Debug</OutputPath>    <DefineConstants>DEBUG</DefineConstants>    <ErrorReport>prompt</ErrorReport>    <WarningLevel>4</WarningLevel>  </PropertyGroup>  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">    <DebugType>none</DebugType>    <Optimize>false</Optimize>    <OutputPath>bin\Release</OutputPath>    <ErrorReport>prompt</ErrorReport>    <WarningLevel>4</WarningLevel>  </PropertyGroup>  <ItemGroup>    <Reference Include="System" />  </ItemGroup>  <ItemGroup>    <Compile Include="Main.cs" />  </ItemGroup>  <ItemGroup>    <ProjectReference Include="..\p4mono\ShellCapture\ShellCapture.csproj">      <Project>{6F7D3B5A-C742-4476-8353-277770D09881}</Project>      <Name>ShellCapture</Name>    </ProjectReference>    <ProjectReference Include="..\p4mono\P4Shell\P4Shell.csproj">      <Project>{8A45DEAD-EBF9-4E94-855D-460BD10A7EF5}</Project>      <Name>P4Shell</Name>    </ProjectReference>  </ItemGroup>  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" /></Project>
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{31300B0A-29A3-4559-9665-869161808C90}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>p4test</RootNamespace>
+    <AssemblyName>p4test</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\p4mono\ShellCapture\ShellCapture.csproj">
+      <Project>{6F7D3B5A-C742-4476-8353-277770D09881}</Project>
+      <Name>ShellCapture</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\p4mono\P4Shell\P4Shell.csproj">
+      <Project>{8A45DEAD-EBF9-4E94-855D-460BD10A7EF5}</Project>
+      <Name>P4Shell</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

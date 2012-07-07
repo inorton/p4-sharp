@@ -29,7 +29,17 @@
         <LibPath>${ProjectDir}/p4api/lib</LibPath>
       </LibPaths>
     </LibPaths>
-    <ExtraLinkerArguments>-lclient</ExtraLinkerArguments>
+    <ExtraLinkerArguments>-Wl,-soname,libcperforce.so</ExtraLinkerArguments>
+    <WarningLevel>All</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+    <ExtraCompilerArguments>-fPIC</ExtraCompilerArguments>
+    <Libs>
+      <Libs>
+        <Lib>client</Lib>
+        <Lib>rpc</Lib>
+        <Lib>supp</Lib>
+      </Libs>
+    </Libs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release</OutputPath>

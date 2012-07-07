@@ -5,15 +5,32 @@
       <Breakpoint file="/home/inb/Projects/git/p4mono/p4mono/ShellCapture/ShellCapture.cs" line="68" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService>
-  <MonoDevelop.Ide.Workbench ActiveDocument="cperforce/cperforce.h">
+  <MonoDevelop.Ide.Workbench ActiveDocument="cperforce-test/main.c">
     <Files>
-      <File FileName="cperforce/cperforce.cpp" Line="21" Column="15" />
-      <File FileName="cperforce/cperforce.h" Line="4" Column="23" />
+      <File FileName="cperforce/cperforce.cpp" Line="67" Column="49" />
+      <File FileName="cperforce/cperforce.h" Line="10" Column="43" />
+      <File FileName="cperforce-sharp/CPerforceSharp.cs" Line="22" Column="48" />
+      <File FileName="cperforce-sharp/UnsafeNativeMethods.cs" Line="22" Column="90" />
+      <File FileName="cperforce/CPerforceUI.cpp" Line="9" Column="3" />
+      <File FileName="cperforce/CPerforceUI.h" Line="23" Column="3" />
+      <File FileName="cperforce/p4api/include/p4/clientuser.h" Line="107" Column="32" />
+      <File FileName="cperforce/p4api/include/p4/stdhdrs.h" Line="480" Column="6" />
+      <File FileName="cperforce/p4api/include/p4/strbuf.h" Line="203" Column="9" />
+      <File FileName="cperforce-sharp-tests/Test.cs" Line="17" Column="55" />
+      <File FileName="cperforce-test/main.c" Line="15" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="cperforce" expanded="True" selected="True" />
+          <Node name="cperforce" expanded="True" />
+          <Node name="cperforce-sharp" expanded="True" />
+          <Node name="cperforce-sharp-tests" expanded="True">
+            <Node name="References" expanded="True" />
+          </Node>
+          <Node name="cperforce-test" expanded="True">
+            <Node name="Packages" expanded="True" />
+            <Node name="main.c" selected="True" />
+          </Node>
           <Node name="P4Shell" expanded="True" />
           <Node name="p4test" expanded="True">
             <Node name="References" expanded="True" />
@@ -22,10 +39,27 @@
         </State>
       </Pad>
       <Pad Id="ClassPad">
-        <State selected="True" />
+        <State expanded="True">
+          <Node name="cperforce" expanded="True">
+            <Node name="Globals" expanded="True">
+              <Node name="ClientUser" selected="True" />
+            </Node>
+          </Node>
+        </State>
       </Pad>
       <Pad Id="MonoDevelop.Debugger.WatchPad">
         <State />
+      </Pad>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True">
+          <Node name="cperforce-sharp-tests" expanded="True">
+            <Node name="cperforcesharptests" expanded="True">
+              <Node name="Test" expanded="True">
+                <Node name="Connect" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
