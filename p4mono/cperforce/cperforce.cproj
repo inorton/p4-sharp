@@ -51,10 +51,8 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="cperforce.h" />
-    <None Include="CPerforceUI.h" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="cperforce.cpp" />
-    <Compile Include="CPerforceUI.cpp" />
   </ItemGroup>
 </Project>

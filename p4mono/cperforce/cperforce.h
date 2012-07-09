@@ -15,7 +15,18 @@ int p4_login( p4handle* ctx, char * username, char* password );
 
 int p4_get_binarybuf( p4handle *ctx, char * buf, size_t buf_len );
 
-int p4_run( p4handle *ctx, int argc, char ** argv );
+int p4_get_infobuf( p4handle *ctx, char * buf, size_t buf_len );
+
+int p4_get_textbuf( p4handle *ctx, char * buf, size_t buf_len );
+
+
+void (*p4_get_stat_string_cb)(const char * key );
+
+int p4_get_stat_keys( p4handle *ctx, void(*p4_get_stat_string_cb)(const char*) );
+
+int p4_get_stat_value( p4handle *ctx, const char * key, void(*p4_get_stat_string_cb)(const char*) );
+
+int p4_run( p4handle *ctx, int argc, char ** argv, char * input );
 
 /*
  * return non-zero if we are connected to a perforce server.

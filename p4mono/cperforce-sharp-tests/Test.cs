@@ -14,20 +14,33 @@ namespace cperforcesharptests
 
             var repo = new PerforceAPI();
 
-            //Console.Error.WriteLine("Connecting..");
+            Console.Error.WriteLine("Connecting..");
 
-            repo.Connect("perforce.ncipher.com",1666);
+            repo.Connect("perforce.ncipher.com", 1666);
 
             //Console.Error.WriteLine("Login..");
 
-            repo.Login("inb", Environment.GetEnvironmentVariable("P4PASSWD"));
+            //repo.Login("inb", Environment.GetEnvironmentVariable("P4PASSWD"));
 
 
-            //Console.Error.WriteLine("info..");
+            Console.Error.WriteLine(">> info..");
 
-            repo.DirectRun("info");
+            var info = repo.DirectRun("info");
 
-            //Console.Error.WriteLine( repo.GetInfoMessages() );
+            foreach (var k in info.Keys)
+            {
+                Console.Error.WriteLine("##{0}:{1}", k.ToString(), info[k] ); 
+            }
+
+
+            Console.Error.WriteLine(">> where..");
+
+            var p4where = repo.DirectRun("where","//nCipher/dev/comp/cutils/trunk/SConscript");
+            foreach (var k in p4where.Keys)
+            {
+                Console.Error.WriteLine("##{0}:{1}", k.ToString(), p4where[k] ); 
+            }
+
         }
     }
 }
