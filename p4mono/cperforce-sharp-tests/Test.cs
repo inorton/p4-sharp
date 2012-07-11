@@ -41,6 +41,16 @@ namespace cperforcesharptests
                 Console.Error.WriteLine("##{0}:{1}", k.ToString(), p4where[k] ); 
             }
 
+            Console.Error.WriteLine(">> print..");
+
+            var print = repo.DirectRun("print","-q","//nCipher/dev/comp/cutils/trunk/SConstruct");
+            foreach (var k in print.Keys)
+            {
+                Console.Error.WriteLine("##{0}:{1}", k.ToString(), print[k] ); 
+            }
+            Console.Error.WriteLine( repo.GetTextData() );
+
+            Console.Error.WriteLine( System.Text.UTF8Encoding.UTF8.GetString( repo.GetBinaryData() ) );
         }
     }
 }

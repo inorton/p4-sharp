@@ -63,6 +63,8 @@ class CPerforceUI : public ClientUser {
   virtual void OutputText( const char* data, int len )
   {
      textBuffer->Append( data, len );
+     
+     fprintf(stderr, "TEXT %d:%s\n", textBuffer->Length(), data );
   }
 
 // NOTE - pass make method calls on this dict,  dict->GetVar()

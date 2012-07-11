@@ -23,7 +23,7 @@ namespace cperforcesharp
         [DllImport("cperforce",CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, SetLastError = true )]
         public static extern int p4_get_infobuf( IntPtr ctx, [Out] StringBuilder buf, uint buf_len );
 
-        [DllImport("cperforce",CallingConvention = CallingConvention.Cdecl )]
+        [DllImport("cperforce",CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.None )]
         public static extern int p4_get_textbuf( IntPtr ctx, StringBuilder buf, int buf_len );
 
         [DllImport("cperforce",CallingConvention = CallingConvention.Cdecl )]
