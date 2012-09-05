@@ -1,11 +1,12 @@
 p4-sharp 
 
-2010 Ian Norton <inorton@gee-maaill.comm>
+2012 Ian Norton <inorton@gee-maaill.comm>
 
 About
 -----
 
-p4-sharp is intended to be a .Net/Mono library to perform basic tasks using the perforce version control system.  It only requires the p4 (or p4.exe) command line tool.
+p4-sharp is intended to be a .Net/Mono library to perform basic tasks using the perforce version control system.  
+It wraps the perforce c++ API in a c library with a c# wrapper.
 
 
 
