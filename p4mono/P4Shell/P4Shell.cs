@@ -242,9 +242,25 @@ namespace P4
 			
 			return files.ToArray();
 		}
-		
-		
-		
+
+        public bool CopyFile(string localPath, string depotPath)
+        {
+            var result = false;
+            var stdout = String.Empty;
+            if (!loggedIn)
+                Login(username, password);
+            try
+            {
+                env.ExecuteThrow("p4", new string[] { "print", "-o", localPath, depotPath }, out stdout);
+                result = true;
+            }
+            catch (ApplicationException e)
+            {
+                Console.Error.WriteLine(e.Message);
+            }
+            return result;
+        }
+
 		public string[] Edit( string wildcard ){
 			string stdout = String.Empty;
 			if ( !loggedIn )
