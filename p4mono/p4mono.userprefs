@@ -1,39 +1,72 @@
-﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" ctype="Workspace" />
+﻿<Properties GitUserInfo="UsingMD">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService>
     <BreakpointStore>
       <Breakpoint file="/home/inb/Projects/git/p4mono/p4mono/ShellCapture/ShellCapture.cs" line="68" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService>
-  <MonoDevelop.Ide.Workbench ActiveDocument="../p4test/Main.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="cperforce-sharp/CPerforceSharp.cs">
     <Files>
-      <File FileName="../p4test/Main.cs" Line="12" Column="4" />
-      <File FileName="ShellCapture/ShellCapture.cs" Line="71" Column="46" />
-      <File FileName="P4Shell/P4Shell.cs" Line="67" Column="32" />
+      <File FileName="cperforce/cperforce.cpp" Line="299" Column="13" />
+      <File FileName="cperforce-test/main.c" Line="17" Column="24" />
+      <File FileName="cperforce/cperforce.h" Line="27" Column="1" />
+      <File FileName="cperforce-sharp/UnsafeNativeMethods.cs" Line="60" Column="66" />
+      <File FileName="cperforce-sharp/CPerforceSharp.cs" Line="47" Column="34" />
+      <File FileName="cperforce-sharp-tests/Test.cs" Line="36" Column="46" />
+      <File FileName="cperforce-tool/Main.cs" Line="22" Column="60" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
+          <Node name="cperforce" expanded="True" />
+          <Node name="cperforce-sharp" expanded="True">
+            <Node name="CPerforceSharp.cs" selected="True" />
+          </Node>
+          <Node name="cperforce-sharp-tests" expanded="True">
+            <Node name="References" expanded="True" />
+          </Node>
+          <Node name="cperforce-test" expanded="True">
+            <Node name="Packages" expanded="True" />
+          </Node>
+          <Node name="cperforce-tool" expanded="True" />
           <Node name="P4Shell" expanded="True" />
           <Node name="p4test" expanded="True">
             <Node name="References" expanded="True" />
-            <Node name="Main.cs" selected="True" />
           </Node>
           <Node name="ShellCapture" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">
-        <State selected="True" />
+        <State expanded="True" selected="True">
+          <Node name="cperforce" expanded="True">
+            <Node name="Globals" expanded="True" />
+          </Node>
+        </State>
       </Pad>
       <Pad Id="MonoDevelop.Debugger.WatchPad">
         <State />
       </Pad>
-      <Pad Id="ConnectionManagerPad">
-        <State expanded="True" selected="True" />
-      </Pad>
       <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State selected="True" />
+        <State expanded="True">
+          <Node name="cperforce-sharp-tests" expanded="True">
+            <Node name="cperforcesharptests" expanded="True">
+              <Node name="Test" expanded="True">
+                <Node name="Connect" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/home/inb/Projects/git/p4mono/p4mono/ShellCapture/ShellCapture.cs" line="68" />
+      <Breakpoint file="/home/inb/Projects/git/p4-sharp/p4mono/cperforce-sharp-tests/Test.cs" line="28" />
+      <Breakpoint file="/home/inb/Projects/git/p4-sharp/p4mono/cperforce-sharp/CPerforceSharp.cs" line="46" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="../../../p4/emulator/cosmo2emulator-feat-serialkb/src/csharp/CosmoEmulator/kb/CosmoEmulatorKeyboard.cs" line="118" offsetX="442" offsetY="1755" expression="remaining" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
 </Properties>
